@@ -25,13 +25,13 @@ jobs:
       - name: Set Checksum
         run: |
           filename="OpenHV-${{ github.event.inputs.tag }}-x86.exe"
-          url="https://github.com/${{ github.repository }}/releases/download/${{ github.event.inputs.tag }}/${filename}"
+          url="https://github.com/OpenHV/OpenHV/releases/download/${{ github.event.inputs.tag }}/${filename}"
           sed -i "s#{URL32}#${url}#g" "tools/chocolateyinstall.ps1"
           curl -sSL "${url}" -o "${filename}"
           md5=$(cat "${filename}" | md5sum -)
           sed -i "s/{MD5CHECKSUM32}/${md5:0:32}/g" "tools/chocolateyinstall.ps1"
           filename="OpenHV-${{ github.event.inputs.tag }}-x64.exe"
-          url="https://github.com/${{ github.repository }}/releases/download/${{ github.event.inputs.tag }}/${filename}"
+          url="https://github.com/OpenHV/OpenHV/releases/download/${{ github.event.inputs.tag }}/${filename}"
           sed -i "s#{URL64}#${url}#g" "tools/chocolateyinstall.ps1"
           curl -sSL "${url}" -o "${filename}"
           md5=$(cat "${filename}" | md5sum -)
